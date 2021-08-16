@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import app from './../main'
 import EmailEditor from './EmailEditor.vue';
 
 const Components = {
@@ -6,7 +6,7 @@ const Components = {
 };
 
 Object.keys(Components).forEach((name) => {
-  Vue.component(name, Components[name]);
+  app.component(name, Components[name]);
 });
 
 export { EmailEditor };

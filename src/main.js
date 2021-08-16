@@ -5,8 +5,6 @@ import Example from './views/Example.vue'
 import DesignList from './views/DesignList.vue'
 import DesignEdit from './views/DesignEdit.vue'
 
-Vue.config.productionTip = false
-
 const routes = [
   { path: '/', component: Example },
   { path: '/dashboard', component: DesignList },
@@ -14,13 +12,18 @@ const routes = [
   { path: '/dashboard/edit/:designId', component: DesignEdit },
 ]
 
-const router = new VueRouter({
+const router = VueRouter.createRouter({
   mode: 'history',
+  history: VueRouter.createWebHashHistory(), // <-- this is a new property and it is mandatory!
   routes
 })
 
-Vue.use(VueRouter)
+// 5. Create and mount the root instance.
+const app = Vue.createApp({})
+// Make sure to _use_ the router instance to make the
+// whole app router-aware.
+app.use(router)
 
-new Vue({
-  router
-}).$mount('#app')
+app.mount('#app')
+
+export default app;
